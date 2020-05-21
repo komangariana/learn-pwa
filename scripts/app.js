@@ -68,6 +68,7 @@
     var label = selected.textContent;
     app.getForecast(key, label);
     app.selectedCities.push({key: key, label: label});
+    app.saveSelectedCities();
     app.toggleAddDialog(false);
   });
 
@@ -178,4 +179,8 @@
   };
 
   app.updateForecastCard(injectedForecast);
+
+  app.saveSelectedCities = function () {
+    window.localforage.setItem('selectedCities', app.selectedCities);
+  };
 })();
